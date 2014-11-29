@@ -22,6 +22,9 @@ BOARD_VENDOR := motorola-qcom
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
+# QCOM SELinux policy
+include device/qcom/sepolicy/sepolicy.mk
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := xt1052,ghost,xt1053,ghost_retail,xt1055,ghost_usc,xt1056,ghost_sprint,xt1058,ghost_att,ghost_rcica,xt1060,ghost_verizon
 
@@ -43,7 +46,7 @@ TARGET_CPU_VARIANT := krait
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 maxcpus=2 androidboot.write_protect=0 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 maxcpus=2 androidboot.write_protect=0
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02200000 --dt $(LOCAL_PATH)/dt.img
@@ -121,6 +124,36 @@ TARGET_POWERHAL_VARIANT := cm
 
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
+
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    device/motorola/ghost/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    atvc.te \
+    atvc_core.te \
+    batt_health.te \
+    bootmodem.te \
+    device.te \
+    file.te \
+    file_contexts \
+    hw_revs.te \
+    keystore.te \
+    location.te \
+    mmi-boot-sh.te \
+    mmi-touch-sh.te \
+    mm-pp-daemon.te \
+    mm-qcamerad.te \
+    mpdecision.te \
+    platform_app.te \
+    property_contexts \
+    property.te \
+    qdumpd.te \
+    sensors.te \
+    surfaceflinger.te \
+	thermal-engine.te \
+    ueventd.te \
+    whisperd.te
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
