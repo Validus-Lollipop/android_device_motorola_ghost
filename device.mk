@@ -73,10 +73,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     mbhc.bin \
     wcd9310_anc.bin
-	
-# Scripts
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/mount_pds.sh:system/bin/mount_pds.sh
 
 # Audio configuration
 PRODUCT_COPY_FILES += \

@@ -1,5 +1,0 @@
-# property for motorola daemons
-type atvc_prop, property_type;
-type hw_revs_prop, property_type;
-type mmi-boot-sh_prop, property_type;
-type whisperd_prop, property_type;
